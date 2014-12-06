@@ -4,7 +4,7 @@
     <h1><%= @project.name %></h1>
     <%= link_to "Edit project details", edit_project_path(@project), class: "button round tiny" %>
     <%= link_to "Remove Project", project_path(@project), method: :delete, class: "button round tiny" %>
-    <p><i>project by: <%= link_to ("#{@project.owner.first_name}" + ' ' + "#{@project.owner.last_name[0]}" + "."), '#'%></i></p>
+   
     <h3><%= @project.description %></h3>
     <h4>Funding Goal: $<%= @project.funding_goal %></h4>
     <b>Start Date:</b> <%= @project.formatted_start_date %> | <b>End Date:</b> <%= @project.formatted_end_date %>  

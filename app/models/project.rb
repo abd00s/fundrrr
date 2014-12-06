@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
   # has_many :comments
   has_many :pledges, through: :rewards
 
+  accepts_nested_attributes_for :rewards, :reject_if => :all_blank, :allow_destroy => true
+
   def formatted_start_date
     start_date.strftime("%b %d, %Y")
   end
