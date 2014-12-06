@@ -131,7 +131,6 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
-  coffee-rails (~> 4.0.0)
   foundation-rails
   jbuilder (~> 2.0)
   jquery-rails
