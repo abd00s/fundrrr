@@ -32,6 +32,9 @@ gem 'sorcery'
 # For multi-model forms
 gem 'cocoon'
 
+# For Authorization
+gem 'cancancan', '~> 1.9'
+
 group :development, :test do
   # gem 'rspec-rails'
   # gem 'factory_girl_rails'
