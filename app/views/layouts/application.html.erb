@@ -31,10 +31,15 @@
 
         <section class="top-bar-section">
           <ul class="left">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
+          <% if current_user %>
+            <li><%= link_to "My Profile", user_path(current_user.id) %></li>
+            <li><%= link_to "Logout", :logout, method: :post %></li>
+          <% else %>
+            <li><%= link_to "Register", new_user_path %></li>
+            <li><%= link_to "Login", :login %></li>
+          <% end %>
           </ul>
-
+ 
           <ul class="right">
             <li>
               <%= link_to "Start a new Project on fundRRR", new_project_path, class: "round button" %>
@@ -51,6 +56,10 @@
           </ul>
         </section>
       </nav>   
+      <div>
+        <p id="notice"><%= flash[:notice] %></p>
+        <p id="alert"><%= flash[:alert] %></p>
+      </div>
     </div>
   </div>
   <div class="row">
