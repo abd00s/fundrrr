@@ -3,14 +3,21 @@
 
     <h1><%= @project.name %></h1>
     <% if current_user %>
-      <% if current_user.id == @project.owner.id %> 
-        <%= link_to "Edit project details", edit_project_path(@project), class: "button round tiny" %>
-        <%= link_to "Remove Project", project_path(@project), method: :delete, class: "button round tiny" %>
-      <% end %>
+    <% if current_user.id == @project.owner.id %> 
+    <%= link_to "Edit project details", edit_project_path(@project), class: "button round tiny" %>
+    <%= link_to "Remove Project", project_path(@project), method: :delete, class: "button round tiny" %>
+    <% end %>
     <% end %>  
     <p><i>project by: <%= link_to ("#{@project.owner.first_name}" + ' ' + "#{@project.owner.last_name[0]}" + "."), user_path(@project.owner)%></i></p>
     <h3><%= @project.description %></h3>
     <h4>Funding Goal: $<%= @project.funding_goal %></h4>
+    <div class="panel">
+      <h4>Raised to date: $<%= @project.raised %></h4>
+      <h4>Progress: <%= @project.progress %> %</h4>
+      <div class="progress success round">
+      <span class="meter" style="width: <%= @project.progress %>%"></span>
+      </div>
+    </div>
     <b>Start Date:</b> <%= @project.formatted_start_date %> | <b>End Date:</b> <%= @project.formatted_end_date %>  
   </div>
 
@@ -19,28 +26,28 @@
     <% @project.rewards.each do |reward| %>
     <% if reward.backers.include?(current_user) %>
     <div class="callout panel">
-        <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
-        <h6><%= reward.description %></h6>
-        <p><i>Backers: <%=reward.pledges.count %></i></p>
-        <p><b>BACKED!</b></p>
-      </div>
+      <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
+      <h6><%= reward.description %></h6>
+      <p><i>Backers: <%=reward.pledges.count %></i></p>
+      <p><b>BACKED!</b></p>
+    </div>
     
     <% else %>
-  
+
     <%= link_to project_pledges_path(@project, :pledge => {contribution: reward.price_tier,  reward_id: reward.id}), :method => :post do %>
     <div class='panel'>
-            <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
-            <h6><%= reward.description %></h6>
-            <p><i>Backers: <%=reward.pledges.count %></i></p>
-      </div>
+      <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
+      <h6><%= reward.description %></h6>
+      <p><i>Backers: <%=reward.pledges.count %></i></p>
+    </div>
     <% end %>
 
-   
-      
-      
+
+
+
 
     
-  
+
     <% end %>
     <% end %>
   </div>

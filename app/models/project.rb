@@ -13,4 +13,12 @@ class Project < ActiveRecord::Base
   def formatted_end_date
     end_date.strftime("%b %d, %Y")
   end
+
+  def raised
+    pledges.sum(:contribution)
+  end
+
+  def progress
+    ((raised.to_f / funding_goal) * 100).to_i
+  end
 end
