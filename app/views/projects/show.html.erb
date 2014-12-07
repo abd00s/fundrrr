@@ -22,14 +22,21 @@
       </div>
     
     <% else %>
-
-    <a href="#">
-      <div class="panel">
-        <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
-        <h6><%= reward.description %></h6>
-        <p><i>Backers: <%=reward.pledges.count %></i></p>
+  
+    <%= link_to project_pledges_path(@project, :pledge => {contribution: reward.price_tier,  reward_id: reward.id}), :method => :post do %>
+    <div class='panel'>
+            <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
+            <h6><%= reward.description %></h6>
+            <p><i>Backers: <%=reward.pledges.count %></i></p>
       </div>
-    </a>
+    <% end %>
+
+   
+      
+      
+
+    
+  
     <% end %>
     <% end %>
   </div>

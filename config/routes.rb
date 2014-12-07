@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :projects
+  resources :projects do
+    resources :pledges, only: [:destroy, :create]
+  end
+
   resources :users
   resources :user_sessions, only: [:destroy, :new, :create]
   get 'login' => 'user_sessions#new', :as => :login
