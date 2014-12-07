@@ -1,0 +1,14 @@
+<h1>My fundRRR Profile</h1>
+<h2><%= @user.first_name %> <%= @user.last_name %></h2>
+<%= link_to "Edit profile", edit_user_path(@user), class: "button round tiny" %>
+<%= link_to "Delete account", user_path(@user), method: :delete, class: "button round tiny" %>
+<h3>Projects Backed</h3>
+<% if @user.pledges != []%>
+  <% @user.pledges.each do |pledge| %>
+  <h4><%= link_to pledge.reward.project.name, project_path(pledge.reward.project) %></h4>
+  <h3>Spent to date: $<%= @user.pledges.sum(:contribution) %></h3>
+  <% end %>
+<% else %>
+  <h3>None.</h3>
+<% end %>
+
