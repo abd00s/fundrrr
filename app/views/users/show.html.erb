@@ -6,8 +6,8 @@
 <% if @user.pledges != []%>
   <% @user.pledges.each do |pledge| %>
   <h4><%= link_to pledge.reward.project.name, project_path(pledge.reward.project) %></h4>
-  <h3>Spent to date: $<%= @user.pledges.sum(:contribution) %></h3>
   <% end %>
+  <h3>Spent to date: $<%= @user.pledges.sum(:contribution) %></h3>
 <% else %>
   <h3>None.</h3>
 <% end %>
