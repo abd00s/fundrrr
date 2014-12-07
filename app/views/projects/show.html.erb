@@ -4,7 +4,7 @@
     <h1><%= @project.name %></h1>
     <%= link_to "Edit project details", edit_project_path(@project), class: "button round tiny" %>
     <%= link_to "Remove Project", project_path(@project), method: :delete, class: "button round tiny" %>
-   
+
     <h3><%= @project.description %></h3>
     <h4>Funding Goal: $<%= @project.funding_goal %></h4>
     <b>Start Date:</b> <%= @project.formatted_start_date %> | <b>End Date:</b> <%= @project.formatted_end_date %>  
@@ -13,6 +13,16 @@
   <div class="large-3 columns">
     <h2>Rewards</h2>
     <% @project.rewards.each do |reward| %>
+    <% if reward.backers.include?(current_user) %>
+    <div class="callout panel">
+        <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
+        <h6><%= reward.description %></h6>
+        <p><i>Backers: <%=reward.pledges.count %></i></p>
+        <p><b>BACKED!</b></p>
+      </div>
+    
+    <% else %>
+
     <a href="#">
       <div class="panel">
         <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
@@ -20,6 +30,7 @@
         <p><i>Backers: <%=reward.pledges.count %></i></p>
       </div>
     </a>
+    <% end %>
     <% end %>
   </div>
 </div>
