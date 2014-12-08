@@ -12,7 +12,7 @@
     <h3><%= @project.description %></h3>
     <h4>Funding Goal: $<%= @project.funding_goal %></h4>
     <div class="panel">
-      <h4>Raised to date: $<%= @project.raised %></h4>
+      <h4>Raised to date: $<span class="amount-raised"><%= @project.raised %></span></h4>
       <h4>Progress: <%= @project.progress %> %</h4>
       <div class="progress success round">
       <span class="meter" style="width: <%= @project.progress %>%"></span>
@@ -34,7 +34,7 @@
     
     <% else %>
 
-    <%= link_to project_pledges_path(@project, :pledge => {contribution: reward.price_tier,  reward_id: reward.id}), :method => :post do %>
+    <%= link_to project_pledges_path(@project, :pledge => {contribution: reward.price_tier,  reward_id: reward.id}), class: "back-project", :method => :post, remote: true do %>
     <div class='panel'>
       <h5><b>Contribution:</b> $<%= reward.price_tier%></h5>
       <h6><%= reward.description %></h6>
