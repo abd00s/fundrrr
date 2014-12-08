@@ -13,7 +13,7 @@
     <h4>Funding Goal: $<%= @project.funding_goal %></h4>
     <div class="panel">
       <h4>Raised to date: $<span class="amount-raised"><%= @project.raised %></span></h4>
-      <h4>Progress: <%= @project.progress %> %</h4>
+      <h4>Progress: <span class="progress"><%= @project.progress %></span>%</h4>
       <div class="progress success round">
       <span class="meter" style="width: <%= @project.progress %>%"></span>
       </div>
