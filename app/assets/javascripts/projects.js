@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 $(document).on("ready page:load", function(){
 
-  $("a.backed-project").on("click", function(event){
+  $("a.back-project").on("click", function(event){
     
   });
 
